@@ -94,12 +94,11 @@ class Istat
               cols.each_with_index do |item, index|
                 data[item.to_sym] = row[index]
               end
-              p data
-              # yield data
+              yield data
             end
           end rescue nil
         end
       end
-    end
+    end if block_given?
   end
 end
