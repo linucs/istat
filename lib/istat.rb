@@ -23,7 +23,7 @@ class Istat
     open(url) do |f|
       f.each_line do |line|
         CSV.parse(line, :col_sep => ';') do |row|
-          if row.size == cols.size
+          if row.size >= cols.size
             data = Hash.new
             cols.each_with_index do |item, index|
               data[item.to_sym] = row[index]
@@ -62,7 +62,7 @@ class Istat
     open(url) do |f|
       f.each_line do |line|
         CSV.parse(line, :col_sep => ';') do |row|
-          if row.size == cols.size
+          if row.size >= cols.size
             data = Hash.new
             cols.each_with_index do |item, index|
               data[item.to_sym] = row[index]
@@ -89,7 +89,7 @@ class Istat
       Zip::ZipFile.open(f.path) do |zip|
         zip.get_input_stream('listacomuni.txt').each_line do |line|
           CSV.parse(line, :col_sep => ';') do |row|
-            if row.size == cols.size
+            if row.size >= cols.size
               data = Hash.new
               cols.each_with_index do |item, index|
                 data[item.to_sym] = row[index]
